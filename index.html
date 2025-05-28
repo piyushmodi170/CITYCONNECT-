@@ -3,88 +3,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CityConnect – Explore</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Scanner</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
-      padding: 0;
+      padding: 20px;
       background-color: #f2f2f2;
+      text-align: center;
     }
-    header {
+    h1 {
+      color: #6200ea;
+    }
+    video, canvas {
+      width: 90%;
+      max-width: 400px;
+      margin-top: 20px;
+      border-radius: 10px;
+      border: 2px solid #6200ea;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
       background-color: #6200ea;
       color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .search-bar {
-      margin: 15px;
-    }
-    .search-bar input {
-      width: 100%;
-      padding: 10px;
+      border: none;
       border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    .categories {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 10px;
-    }
-    .category {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 10px;
-      width: 120px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: #ffffff;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
-    }
-    .bottom-nav a {
-      text-decoration: none;
-      color: #6200ea;
-      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div>📍 Your City</div>
-    <div>👤 Profile</div>
-  </header>
+  <h1>📷 Product Scanner</h1>
+  <p>Point your camera at a product to scan.</p>
+  <video id="video" autoplay></video>
+  <canvas id="canvas" style="display:none;"></canvas>
+  <br>
+  <button onclick="capture()">Scan</button>
+  <p id="result"></p>
 
-  <div class="search-bar">
-    <input type="text" placeholder="Search for groceries, jobs, books..." />
-  </div>
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const result = document.getElementById('result');
 
-  <div class="categories">
-    <div class="category">🛒 Groceries</div>
-    <div class="category">📚 Used Books</div>
-    <div class="category">💼 Jobs</div>
-    <div class="category">🏠 Tuition</div>
-    <div class="category">📱 Electronics</div>
-    <div class="category">🛏 Furniture</div>
-  </div>
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        video.srcObject = stream;
+      })
+      .catch((err) => {
+        console.error("Camera access denied:", err);
+        result.textContent = "Please allow camera access.";
+      });
 
-  <div class="bottom-nav">
-    <a href="#">Home</a>
-    <a href="#">Upload</a>
-    <a href="#">Orders</a>
-    <a href="#">Profile</a>
-  </div>
+    function capture() {
+      const context = canvas.getContext('2d');
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0);
+      result.textContent = "🧠 Scanned! (AI product recognition will go here)";
+    }
+  </script>
 </body>
 </html>
