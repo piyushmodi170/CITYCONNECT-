@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CityConnect – Explore</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+    }
+    header {
+      background-color: #6200ea;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .search-bar {
+      margin: 15px;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 10px;
+    }
+    .category {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 10px;
+      width: 120px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+    .bottom-nav a {
+      text-decoration: none;
+      color: #6200ea;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>📍 Your City</div>
+    <div>👤 Profile</div>
+  </header>
+
+  <div class="search-bar">
+    <input type="text" placeholder="Search for groceries, jobs, books..." />
+  </div>
+
+  <div class="categories">
+    <div class="category">🛒 Groceries</div>
+    <div class="category">📚 Used Books</div>
+    <div class="category">💼 Jobs</div>
+    <div class="category">🏠 Tuition</div>
+    <div class="category">📱 Electronics</div>
+    <div class="category">🛏 Furniture</div>
+  </div>
+
+  <div class="bottom-nav">
+    <a href="#">Home</a>
+    <a href="#">Upload</a>
+    <a href="#">Orders</a>
+    <a href="#">Profile</a>
+  </div>
+</body>
+</html>
